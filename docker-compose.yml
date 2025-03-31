@@ -1,0 +1,23 @@
+services:
+  backend:
+    build: ./backend
+    container_name: wordle-backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules 
+    networks:
+      - wordle-net
+
+  frontend:
+    build: ./frontend
+    container_name: wordle-frontend
+    ports:
+      - "3000:80"
+    networks:
+      - wordle-net
+
+networks:
+  wordle-net:
+    driver: bridge
